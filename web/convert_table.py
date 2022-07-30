@@ -17,6 +17,7 @@ def convert_table(lines):
         last = last.translate(str.maketrans({'-': '━', '+': '┷'}))
         out.append(f'┗{last[1:-1]}┛')
         return '\n'.join(out)
+
     def from_unicode():
         out = []
         for line in lines:
@@ -24,9 +25,8 @@ def convert_table(lines):
             line = line.replace(' ✓ ', 'yes')
             out.append(line)
         return '\n'.join(out)
-    if lines[0][0] == '+':
-        return from_ascii()
-    return from_unicode()
+
+    return from_ascii() if lines[0][0] == '+' else from_unicode()
 
 if __name__ == '__main__':
     input_lines = []
